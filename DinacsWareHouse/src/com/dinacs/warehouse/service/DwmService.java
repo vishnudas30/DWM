@@ -20,6 +20,21 @@ public class DwmService<dmwList> {
 		return dwmDaoObj.getproductItems();
 	}
 
+	public String deleteItem(String id) {
+		DwmDAO dao = new DwmDAO();
+		dao.deleteItem(id);
+		
+		return null;
+	}
+
+	public DwmModel getItemData(String id) {
+
+		DwmDAO dao = new DwmDAO();
+		 return dao.getItemData(id);
+		
+		
+	}
+
 	
 	
 }

@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.dinacs.warehouse.model.DwmModel;
 import com.dinacs.warehouse.service.DwmService;
 
-public class DwmController<E> extends HttpServlet {
+public class DwmController extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String warehouseAction = req.getParameter("warehouseAction");
@@ -29,6 +34,31 @@ public class DwmController<E> extends HttpServlet {
 			rd.forward(req, resp);
 		}
 
+		if ("delete".equalsIgnoreCase(warehouseAction)) {
+
+			DwmService dwmService = new DwmService();
+
+			String id = req.getParameter("id");
+			System.out.println("id is" + id);
+			dwmService.deleteItem(id);
+
+			resp.sendRedirect("home.jsp");
+		}
+
+		if ("getItemData".equalsIgnoreCase(warehouseAction)) {
+
+			DwmService dwmService = new DwmService();
+
+			String id = req.getParameter("id");
+			System.out.println("id is"+id);
+			DwmModel dwmModelObj = dwmService.getItemData(id);
+			req.setAttribute("dwmModelObj",dwmModelObj );
+			
+			RequestDispatcher rd = req.getRequestDispatcher("/update.jsp");
+			
+			rd.forward(req, resp);
+
+		}
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -48,10 +48,11 @@ for(DwmModel item : itemListvalue){%>
 	<td><%= item.getTotal()%></td> 
 	<td><a href="warehouse?warehouseAction=delete&id=<%= item.getItemid()%>">delete </a><br>
  </td>
- 	<td><a href="warehouse?warehouseAction=getproductItem&id=<%= item.getItemid()%>">update</a> <br>
+ 	<td><a href="warehouse?warehouseAction=getItemData&id=<%= item.getItemid()%>">update</a> <br>
  </td>
 	</tr><%} %>	
-</table>
+</table><br><br>
+<a href="home.jsp" >Back to home!!!</a> 
 
 
 </body>
